@@ -1,8 +1,10 @@
 package com.labdessoft.roteiro01.controller;
 
+import com.labdessoft.roteiro01.DTO.TaskDTO;
 import com.labdessoft.roteiro01.entity.Task;
 import com.labdessoft.roteiro01.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,14 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @GetMapping()
+    @GetMapping("/{taskId}")
+    public ResponseEntity<TaskDTO> getTask(@PathVariable Long taskId) {
+        TaskDTO taskDTO = taskService.getTask(taskId);
+        if (taskDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(taskDTO);
+    }
     @Operation(summary = "Lista todas as tarefas criadas")
     public ResponseEntity<List<Task>> listAll() {
         try {
@@ -33,9 +42,9 @@ public class TaskController {
 
     @PostMapping()
     @Operation(summary = "Criar uma nova tarefa")
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+    public ResponseEntity<Task> createTask(@RequestBody @Valid TaskDTO task) {
         try {
-            Task _task = taskService.create(new Task(task.getDescription()));
+            Task _task = taskService.create(task);
             return new ResponseEntity<>(_task, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
