@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
+    @ApiOperation(value = "Retorna uma tarefa expecífica")
     @GetMapping("/{taskId}")
+    @Operation(summary = "Retorna uma tarefa específica através no ID")
     public ResponseEntity<TaskDTO> getTask(@PathVariable Long taskId) {
         TaskDTO taskDTO = taskService.getTask(taskId);
         if (taskDTO == null) {
@@ -27,6 +30,9 @@ public class TaskController {
         }
         return ResponseEntity.ok(taskDTO);
     }
+
+
+    @GetMapping()
     @Operation(summary = "Lista todas as tarefas criadas")
     public ResponseEntity<List<Task>> listAll() {
         try {

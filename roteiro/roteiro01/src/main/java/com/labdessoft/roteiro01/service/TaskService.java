@@ -108,6 +108,10 @@ public class TaskService {
         return taskRepository.findById(id)
                 .map(updateTask -> {
                     updateTask.setDescription(task.getDescription());
+                    updateTask.setDays(task.getDays());
+                    updateTask.setType(task.getType());
+                    updateTask.setPriority(task.getPriority());
+                    updateTask.setDate(task.getDate());
                     updateTask.setCompleted(false);
                     Task updated = taskRepository.save(updateTask);
                     return ResponseEntity.ok().body(updated);
