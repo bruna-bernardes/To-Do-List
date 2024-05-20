@@ -1,4 +1,4 @@
-package main.java.com.labdessoft.roteiro01.integration;
+package test.java.integration;
 
 import com.labdessoft.roteiro01.Roteiro01Application;
 import io.restassured.RestAssured;
