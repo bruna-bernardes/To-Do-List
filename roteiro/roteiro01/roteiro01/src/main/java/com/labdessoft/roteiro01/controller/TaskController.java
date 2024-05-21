@@ -1,8 +1,8 @@
-package com.labdessoft.roteiro01.controller;
+package main.java.com.labdessoft.roteiro01.controller;
 
-import com.labdessoft.roteiro01.DTO.TaskDTO;
-import com.labdessoft.roteiro01.entity.Task;
-import com.labdessoft.roteiro01.service.TaskService;
+import main.java.com.labdessoft.roteiro01.DTO.TaskDTO;
+import main.java.com.labdessoft.roteiro01.entity.Task;
+import main.java.com.labdessoft.roteiro01.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

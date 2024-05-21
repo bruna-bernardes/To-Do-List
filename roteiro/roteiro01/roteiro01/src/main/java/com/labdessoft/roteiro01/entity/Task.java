@@ -1,7 +1,7 @@
-package com.labdessoft.roteiro01.entity;
+package main.java.com.labdessoft.roteiro01.entity;
 
-import com.labdessoft.roteiro01.Enum.Priority;
-import com.labdessoft.roteiro01.Enum.Type;
+import main.java.com.labdessoft.roteiro01.Enum.Priority;
+import main.java.com.labdessoft.roteiro01.Enum.Type;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
