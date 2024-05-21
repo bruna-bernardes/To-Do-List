@@ -1,15 +1,13 @@
-package com.labdessoft.roteiro01.DTO;
+package main.java.com.labdessoft.roteiro01.DTO;
 
-import java.time.LocalDate;
-
-import com.labdessoft.roteiro01.Enum.Priority;
-import com.labdessoft.roteiro01.Enum.Type;
-import com.labdessoft.roteiro01.entity.Task;
-import jakarta.validation.constraints.FutureOrPresent;
+import main.java.com.labdessoft.roteiro01.Enum.Priority;
+import main.java.com.labdessoft.roteiro01.Enum.Type;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter

@@ -1,10 +1,10 @@
-package com.labdessoft.roteiro01.service;
+package main.java.com.labdessoft.roteiro01.service;
 
-import com.labdessoft.roteiro01.DTO.TaskDTO;
-import com.labdessoft.roteiro01.Enum.Priority;
-import com.labdessoft.roteiro01.Enum.Type;
-import com.labdessoft.roteiro01.entity.Task;
-import com.labdessoft.roteiro01.repository.TaskRepository;
+import main.java.com.labdessoft.roteiro01.DTO.TaskDTO;
+import main.java.com.labdessoft.roteiro01.Enum.Priority;
+import main.java.com.labdessoft.roteiro01.Enum.Type;
+import main.java.com.labdessoft.roteiro01.entity.Task;
+import main.java.com.labdessoft.roteiro01.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
