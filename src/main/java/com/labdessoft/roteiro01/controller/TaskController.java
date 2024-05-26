@@ -1,6 +1,6 @@
 package com.labdessoft.roteiro01.controller;
 
-import com.labdessoft.roteiro01.DTO.TaskDTO;
+import com.labdessoft.roteiro01.DTO.response.TaskDTO;
 import com.labdessoft.roteiro01.entity.Task;
 import com.labdessoft.roteiro01.service.TaskService;
 import io.swagger.annotations.ApiOperation;
