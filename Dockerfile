@@ -1,16 +1,19 @@
-FROM ubuntu:latest AS build
+FROM ubuntu:22.04 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk -y
-COPY To-Do-List.code-workspace .
+RUN apt-get update && \
+    apt-get install -y openjdk-21-jdk maven && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install maven -y
+COPY src /app/src
+COPY pom.xml /app
+
+WORKDIR /app
 RUN mvn clean install
 
 FROM openjdk:21-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build target/roteiro01-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build target/roteiro01-0.0.1-SNAPSHOT.jar app.jar 
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
