@@ -1,0 +1,35 @@
+@startuml
+title Diagrama de Sequencia referente ao Endpoint - Buscar uma Tarefa pelo ID
+actor Usuário
+Boundary Frontend
+Boundary SpringBoot
+Control taskController
+Entity Task
+Participant taskService
+Participant taskRepository
+Database TodoList
+activate SpringBoot
+Usuário -> Frontend: Buscar uma Tarefa pelo ID
+activate Usuário
+activate Frontend
+activate TodoList
+Frontend -> SpringBoot: GET api/tasks/{id}
+group Roteiro01Application [Spring Boot Java Application]
+SpringBoot -> taskController: getTaskById(@PathVariable Long id)
+activate taskController
+taskController -> taskService: findById(id)
+activate taskService
+taskService -> taskRepository: findById(id)
+activate taskRepository
+taskRepository -> TodoList: SELECT * FROM Tasks WHERE id = ?
+TodoList --> taskRepository: Task
+taskRepository --> taskService: Optional<Task>
+destroy taskRepository
+taskService --> taskController: Optional<Task>
+destroy taskService
+taskController --> SpringBoot: ResponseEntity<Task> ResponseEntity.ok(task)
+destroy taskController
+end
+SpringBoot --> Frontend: ResponseEntity<Task>
+Frontend --> Usuário: Task
+@enduml

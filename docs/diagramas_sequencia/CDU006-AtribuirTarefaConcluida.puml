@@ -1,0 +1,41 @@
+@startuml
+title Diagrama de Sequencia referente ao Endpoint - Atribuir uma Tarefa como Concluída
+actor Usuário
+Boundary Frontend
+Boundary SpringBoot
+Control taskController
+Entity Task
+Participant taskService
+Participant taskRepository
+Database TodoList
+activate SpringBoot
+Usuário -> Frontend: Atribuir Tarefa como Concluída
+activate Usuário
+activate Frontend
+activate TodoList
+Frontend -> SpringBoot: PUT api/tasks/{id}/complete
+group Roteiro01Application [Spring Boot Java Application]
+SpringBoot -> taskController: completeTask(@PathVariable Long id)
+activate taskController
+taskController -> taskService: completeTask(id)
+activate taskService
+taskService -> taskRepository: findById(id)
+activate taskRepository
+taskRepository -> TodoList: SELECT * FROM Tasks WHERE id = ?
+TodoList --> taskRepository: Task
+taskRepository --> taskService: Optional<Task>
+destroy taskRepository
+taskService -> taskService: set task.completed = true
+taskService -> taskRepository: save(task)
+taskRepository -> TodoList: UPDATE Tasks SET completed = true WHERE id = ?
+TodoList --> taskRepository: Task
+taskRepository --> taskService: Task
+destroy taskRepository
+taskService --> taskController: Task
+destroy taskService
+taskController --> SpringBoot: ResponseEntity<Task> ResponseEntity.ok(task)
+destroy taskController
+end
+SpringBoot --> Frontend: ResponseEntity<Task>
+Frontend --> Usuário: Task
+@enduml

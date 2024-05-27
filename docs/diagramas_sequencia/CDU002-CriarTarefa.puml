@@ -1,0 +1,35 @@
+@startuml
+title Diagrama de Sequencia referente ao Endpoint - Criar uma Nova Tarefa
+actor Usuário
+Boundary Frontend
+Boundary SpringBoot
+Control taskController
+Entity Task
+Participant taskService
+Participant taskRepository
+Database TodoList
+activate SpringBoot
+Usuário -> Frontend: Criar Nova Tarefa
+activate Usuário
+activate Frontend
+activate TodoList
+Frontend -> SpringBoot: POST api/tasks
+group Roteiro01Application [Spring Boot Java Application]
+SpringBoot -> taskController: createTask(@RequestBody Task task)
+activate taskController
+taskController -> taskService: saveTask(task)
+activate taskService
+taskService -> taskRepository: save(task)
+activate taskRepository
+taskRepository -> TodoList: INSERT INTO Tasks (fields) VALUES (values)
+TodoList --> taskRepository: Task
+taskRepository --> taskService: Task
+destroy taskRepository
+taskService --> taskController: Task
+destroy taskService
+taskController --> SpringBoot: ResponseEntity<Task> ResponseEntity.status(CREATED).body(task)
+destroy taskController
+end
+SpringBoot --> Frontend: ResponseEntity<Task>
+Frontend --> Usuário: Task
+@enduml
