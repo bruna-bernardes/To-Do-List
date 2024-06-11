@@ -1,6 +1,6 @@
 package com.labdessoft.roteiro01.service;
 
-import com.labdessoft.roteiro01.DTO.response.TaskDTO;
+import com.labdessoft.roteiro01.DTO.request.TaskRequestDTO;
 import com.labdessoft.roteiro01.Enum.Priority;
 import com.labdessoft.roteiro01.Enum.Type;
 import com.labdessoft.roteiro01.entity.Task;
@@ -19,18 +19,19 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public TaskDTO getTask(Long taskId) {
+    public TaskRequestDTO getTask(Long taskId) {
         Task task = taskRepository.findById(taskId).orElse(null);
         if (task == null) {
             return null;
         }
-        TaskDTO taskDTO = new TaskDTO();
+        TaskRequestDTO taskDTO = new TaskRequestDTO();
         taskDTO.setId(task.getId());
-        taskDTO.setDescription(task.getDescription());
+        taskDTO.setDescricao(task.getDescription());
         taskDTO.setType(task.getType());
         taskDTO.setPriority(task.getPriority());
         taskDTO.setDate(task.getDate());
         taskDTO.setDays(task.getDays());
+        taskDTO.setCompleted(task.getCompleted());
 
         // Definindo o status da tarefa com base no tipo
         if (task.getType() == Type.DATA) {
@@ -57,12 +58,12 @@ public class TaskService {
         return taskDTO;
     }
 
-    public Task create(TaskDTO task) {
+    public Task create(TaskRequestDTO task) {
         Task entity = new Task();
 
         if (task.getDate() != null) {
             // SETAR O TIPO, SETAR A DATA
-            entity.setDate(task.getDate());// preenchendo a entidade com o que o usuário mandou
+            entity.setDate(task.getDate()); // preenchendo a entidade com o que o usuário mandou
             entity.setType(Type.DATA);
         } else if (task.getDays() != null) {
             LocalDate dataAtual = LocalDate.now();
@@ -76,7 +77,7 @@ public class TaskService {
         }
 
         // Preencher a descrição
-        entity.setDescription(task.getDescription());
+        entity.setDescription(task.getDescricao());
 
         // Definir completed como falso (pois é uma nova tarefa e não foi completada ainda)
         entity.setCompleted(false);
@@ -117,5 +118,4 @@ public class TaskService {
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
-
 }

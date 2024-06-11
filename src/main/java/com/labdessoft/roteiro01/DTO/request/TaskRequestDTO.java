@@ -40,4 +40,7 @@ public class TaskRequestDTO {
     @JsonProperty("prioridade")
     private Priority priority;
 
+    @JsonProperty("status")
+    private String status;
+
 }
