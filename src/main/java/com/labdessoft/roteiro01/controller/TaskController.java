@@ -1,6 +1,6 @@
 package com.labdessoft.roteiro01.controller;
 
-import com.labdessoft.roteiro01.DTO.response.TaskDTO;
+import com.labdessoft.roteiro01.DTO.request.TaskRequestDTO;
 import com.labdessoft.roteiro01.entity.Task;
 import com.labdessoft.roteiro01.service.TaskService;
 import io.swagger.annotations.ApiOperation;
@@ -20,17 +20,16 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @ApiOperation(value = "Retorna uma tarefa expecífica")
+    @ApiOperation(value = "Retorna uma tarefa específica")
     @GetMapping("/{taskId}")
-    @Operation(summary = "Retorna uma tarefa específica através no ID")
-    public ResponseEntity<TaskDTO> getTask(@PathVariable Long taskId) {
-        TaskDTO taskDTO = taskService.getTask(taskId);
+    @Operation(summary = "Retorna uma tarefa específica através do ID")
+    public ResponseEntity<TaskRequestDTO> getTask(@PathVariable Long taskId) {
+        TaskRequestDTO taskDTO = taskService.getTask(taskId);
         if (taskDTO == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(taskDTO);
     }
-
 
     @GetMapping()
     @Operation(summary = "Lista todas as tarefas criadas")
@@ -48,10 +47,10 @@ public class TaskController {
 
     @PostMapping()
     @Operation(summary = "Criar uma nova tarefa")
-    public ResponseEntity<Task> createTask(@RequestBody @Valid TaskDTO task) {
+    public ResponseEntity<Task> createTask(@RequestBody @Valid TaskRequestDTO taskRequestDTO) {
         try {
-            Task _task = taskService.create(task);
-            return new ResponseEntity<>(_task, HttpStatus.CREATED);
+            Task task = taskService.create(taskRequestDTO);
+            return new ResponseEntity<>(task, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
