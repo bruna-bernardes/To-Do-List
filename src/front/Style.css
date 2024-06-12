@@ -1,0 +1,128 @@
+* {
+  font-family: medium italic;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+
+body {
+  background: #f7f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.App {
+  color: #0ACCD8;
+  text-align: center;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #E6E6E6;
+  border-bottom: 1px solid #ddd;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.search-btn {
+  padding: 5px 10px;
+  background: #0ACCD8;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.TodoWrapper {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(189, 18, 18, 0.1);
+  width: 1100px;  
+}
+
+.TodoForm {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.todo-input {
+  outline: none;
+  background: none;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: calc(100% - 120px);
+  color: #333;
+  border-radius: 15px;
+}
+
+.todo-btn {
+  background: #0ACCD8;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.TodoList .Todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e7e4e4;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.todo-check {
+  flex: 0 0 30px;
+}
+
+.todo-text {
+  flex: 1;
+  margin: 0 11px;
+  text-align: left;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+
+.edit-icon, .delete-icon {
+  cursor: pointer;
+}
+
+.completed {
+  color: #999;
+  text-decoration: line-through;
+  border-radius: 15px;
+}
