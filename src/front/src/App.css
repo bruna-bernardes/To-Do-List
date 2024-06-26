@@ -42,9 +42,9 @@ body {
 
 .search-bar input {
   padding: 3px;
-  border: 1px solid #ccc;
+  border: 0,3px solid #ccc;
   border-radius: 4px;
-  margin-right: 8px;
+  margin-right: 9px;
 }
 
 .search-btn {
@@ -60,9 +60,9 @@ body {
   margin-top: 20px;
   padding: 15px;
   background: #fff;
-  border-radius: 15px;
+  border-radius: 25px;
   box-shadow: 0 2px 4px rgba(189, 18, 18, 0.1);
-  width: 1100px;  
+  width: 1110px;  
 }
 
 .TodoForm {
@@ -92,8 +92,8 @@ body {
 
 .TodoList .Todo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: #e7e4e4;
   color: #333;
   padding: 10px;
@@ -101,28 +101,75 @@ body {
   margin-bottom: 10px;
 }
 
+.todo-content {
+  display: flex; /* Utiliza flexbox para alinhar os itens horizontalmente */
+  align-items: center; /* Centraliza verticalmente os itens */
+}
+
 .todo-check {
-  flex: 0 0 30px;
+   padding-left: 5px;
+   padding-top: 12px;
+   margin: 0px 4px;
+   margin-right: 10px;
+   display: flex;
 }
 
 .todo-text {
+  display: flex;
+  align-items: center;
   flex: 1;
-  margin: 0 11px;
-  text-align: left;
+  margin: 0px;
+  text-align: left; /* Alinha o texto à esquerda */
 }
 
 .todo-actions {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 50px;
+  margin-left: 10px;
 }
 
-.edit-icon, .delete-icon {
-  cursor: pointer;
+.edit-icon {
+  margin-left: 10px; /* Espaçamento entre os ícones */
+  cursor: pointer; /* Transforma o cursor em pointer para indicar clique */
 }
+
+.delete-icon {
+  margin-left: 10px;
+  cursor: pointer; /* Transforma o cursor em pointer para indicar clique */
+}
+
 
 .completed {
   color: #999;
   text-decoration: line-through;
-  border-radius: 15px;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 8px;
+  outline: none;
+}
+
+.add-todo-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.add-todo-button:hover {
+  background: #0056b3;
 }

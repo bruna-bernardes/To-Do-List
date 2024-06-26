@@ -1,8 +1,8 @@
 import React from 'react';
 import { TodoWrapper } from './components/TodoWrapper';
-import './style.css';
+import './App.css';
 
-export function App(props) {
+function App() {
   return (
     <div className='App'>
       <div className='header'>
@@ -17,5 +17,4 @@ export function App(props) {
   );
 }
 
-// Log to console
-console.log('Hello console');
+export default App;
